@@ -9,7 +9,7 @@ public class DigitTest1 {
 		Scanner sc = new Scanner(System.in);
 
 		int intArray[] = new int[500];
-		int intArray2[] = new int[500];
+		
 		int used[] = new int[500];
 
 		for (int i = 0; i < intArray.length; i++) {
@@ -30,6 +30,7 @@ public class DigitTest1 {
 				System.out.println(i + ":" + used[i] + "°³");
 			}
 		}
+		sc.close();
 		
 	}
 }
