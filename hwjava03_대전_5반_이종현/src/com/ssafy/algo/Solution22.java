@@ -38,6 +38,7 @@ public class Solution22 {
 				int c = sc.nextInt();
 
 				wsPosition[a][b] = c;
+				pondUsed[a][b] = true;
 				// 소금쟁이 위치 받기
 			}
 			// line 34부터 다시 델타로 짜보기
