@@ -15,7 +15,8 @@ public class Solution {
 			int array[][] = new int[N][N];
 			
 			int length = N;
-			int R = 0, C=-1; //여기서 C를 0으로 뒀더니 ArrayIndexOutOfBounds 뜸, 생각못햇음 C에서 바로 더해서 0이 되어야하는데 1이되버리는 걸 생각 못함
+			int R = 0, C=-1; //여기서 C를 0으로 뒀더니 ArrayIndexOutOfBounds 뜸, 생각못햇음 C에서 바로 더해서 0이 되어야하는데 1이되버리는 걸 생각 못함, 오답 노트에 무조건 적기
+			// 조건 값을 항상 머리속으로 돌려보기
 			int direction =1;
 			int number =1;
 			
