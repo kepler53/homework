@@ -21,7 +21,7 @@ public class Main_11399 {
 //				array[i] =temp;				
 //			}
 //			
-//		} 여기서 왜 소팅이 안 되는
+//		} 여기서 왜 소팅이 안 되는 이유는 뭘까? while문 돌려야하나?
 		Arrays.sort(array);
 	
 		int sum = 0;

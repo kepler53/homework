@@ -5,6 +5,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+
 public class Main_2999 {
 	public static void main(String[] args) throws IOException {
 		
@@ -21,22 +22,23 @@ public class Main_2999 {
 			}
 		}
 		
-		char[][] email = new char[C][R];
-
+		char[][] email = new char[R][C];
+		int count =0;
 		
+		//행렬 transpose
         for (int i = 0; i < C; i++) {
             for (int j = 0; j < R; j++) {
-                email[i][j] = array[i+C*j]; 
-                
+                email[j][i] = array[count++]; 
             }
         }
         
  
-        for (int i = 0; i < C; i++) {
-            for (int j = 0; j < R; j++) {
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
                 System.out.print(email[i][j]);
             }
-        }	
+        }
+		
 	}
 
 }
