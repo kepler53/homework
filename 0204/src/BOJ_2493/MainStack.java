@@ -34,7 +34,6 @@ public class MainStack {
 					result[i] = tower.peek().index;
 					break;
 				}
-
 			}
 			if (tower.isEmpty())
 				result[i] = 0;
