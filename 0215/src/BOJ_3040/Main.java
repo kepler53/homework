@@ -26,10 +26,10 @@ public class Main {
 		subset(0);
 
 	}
-
+	// 부분집합으로 푼 버젼 , 부분집합의 합
 	static void subset(int cnt) {
 		if (cnt == N) {
-			int sum = 0, selectedCnt = 0;
+			int sum = 0, selectedCnt = 0; 
 			for (int i = 0; i < N; i++) {
 				if (isSelected[i]) {
 					sum += input[i];
@@ -54,5 +54,8 @@ public class Main {
 		subset(cnt + 1);
 
 	}
+	
+	//조합 버젼으로 풀어보기 => cnt == R으로 해서 풀기 기저조건에서 sum =100 이면 그 때 값들 다 출력, 구현부는 동일 , 아니면 sum 값을 아예 파라미터로 같이 넘기기
+	
 
 }
