@@ -39,7 +39,8 @@ public class Main {
 			
 			return this.high-o.high;
 		}
-		//어떻게 정리할 것인지		
+		//어떻게 정리할 것인지
+		//이 부분에서 만약 오늘 오후에 정의한 거와 같이 low와 high가 같을 때 어떻게 정의할 것인지 생각해보기
 	}
 	
 	static int getRefCnt(Chemical[] c) {
