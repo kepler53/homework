@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+
+	h1{
+		text-align: center;
+		color : #aaaa11;
+		text-shadow: 3px 1px 1px gray;
+	}
+	
+	fieldset {
+		width : 500px;
+	}
+	legend{
+		color: #17B012;
+	}
+	td{
+		text-align: right;
+	}
+	.box{
+		text-align: left;
+	}
+	.boxes{width: 200px;}
+	.important{
+		border-color: red;
+	}
+/* 중요 정보 input들은 border 박스 빨간색으로 처리 */
+	input:focus{
+		boder-color : #e93e3e;
+		background-color: green;
+	}
+/* 	input box가 사용중 일 때 해당하는 칸의 배경색과 border 색상 변경 */
+
+</style>
+
+</head>
+<body>
+
+	<h1>Become a Member</h1>
+	<!-- 궁금한점 어떻게 line을 하는지 모르겠음 -->
+	<!-- 마찬가지로 마지막에 줄을 긋는 방법을 모르겠음 -->
+
+
+<!-- 	fieldset 내부를 표처럼 해서 과제와 같이 나타내기 -->
+	<fieldset>
+		<legend>Registration information</legend>
+		<table>
+			<tr>
+				<td><label for="user-email">E-mail :</label></td>
+				<td><input type="text"	id="user-email" name="user-email" class="important"></td>
+			</tr>
+			<tr>
+				<td><label for="password">Password :</label> </td>
+				<td><input type="password" id="password" name="password" placeholder="At least 6 letters or numbers" class="important"></td>
+			</tr>
+			<tr>
+				<td><label for="password-verify">Verify Password:</label></td>
+				<td><input type="password" id="password-verify" name="password-verify" class="important"></td>
+			</tr>
+		</table>
+	</fieldset>
+
+	<fieldset>
+		<legend>Member Information </legend>
+			<table>
+				<tr>
+					<td><label for="First-name">First Name :</label></td> 
+					<td><input type="text" id="First-name" name="First-name" class="important"></td> 
+				</tr>
+				<tr>
+					<td><label for="Last-name">Last Name :</label> </td> 
+					<td><input type="text" id="Last-name" name="Last-name" class="important"></td> 
+				</tr>
+				<tr>
+					<td><label for="Address">Address:</label> </td> 
+					<td><input type="text" id="Address" name="Address"></td> 
+				</tr>
+				<tr>
+					<td><label for="City">City:</label> </td> 
+					<td><input type="text" id="City" name="City" class="important"></td> 
+				</tr>
+				<tr>
+					<td><label for="State">State:</label> </td> 
+					<td><input type="text" id="State" name="State" placeholder="2-character code" class="important"></td> 
+				</tr>
+				<tr>
+					<td><label for="Zip-code">Zip Code:</label> </td> 
+					<td><input type="text" id="Zip-code" name="Zip-code" placeholder="5 or 9 digits" class="important"></td> 
+				</tr>
+				<tr>
+					<td><label for="Phone-number">Verify Password:</label> </td> 
+					<td><input type="text" id="Phone-number" name="Phone-number" placeholder="999-999-9999" ></td> 
+				</tr>				
+			</table>		
+	</fieldset>
+	<fieldset>
+		<legend>Membership Information</legend>
+		<table>
+			<tr>
+				<td><label for="Member-type">Membership Type :</label> </td>
+				<td class="box"><select name="type" id="Member-type" class ="boxes">
+					<option value = "senior">Senior
+					<option value = "junior">Junior
+				</select></td>
+			</tr>
+			<tr>
+				<td><label for="Starting-date">Starting Date :</label> </td>
+				<td class="box"><input type="date" id="start" name="Starting-date" value="연도-월-일" min="1000-01-01" max="2018-12-31" class="important boxes"></td>
+<!-- 궁금한점  이 부분에서 어떻게 과제와 같이 나타내는지 모르겠음, 모르는 방법이어서 input의 type을 date로 주었음-->
+			</tr>
+			<tr>
+				<td><label for="password-verify">Verify Password:</label></td>
+				<td class="box"><input type= "number" id="password-verify" name="password-verify" value="2" class ="boxes"></td>
+				
+<!-- 그리고 항상  화살표가 보이게 할 수는 없나? -->
+			</tr>
+		</table>
+	</fieldset>
+	
+	<fieldset id="Submit">
+		<legend>Submit Your MemberShip</legend>
+		<button type="submit">Submit</button>
+		<button type="reset">Reset Fields</button>
+	</fieldset>
+</body>
+</html>
