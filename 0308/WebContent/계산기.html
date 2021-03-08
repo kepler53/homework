@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+	fieldset {
+		width: 300px;
+	}
+	input {
+		width: 270px;
+		height : 20px;
+		text-align: right;
+	}
+	button {
+		margin-top : 10px;
+		margin-right : 5px;
+		width : 65px;
+		height: 60px;
+		margin-bottom: 3px;
+	}
+	/* 궁금한점 이 부분에서 hover를 쓰는 게 맞는 지 아니면 클릭을 했을 때 테두리 값을 변경해야 하는 것인지에 대한 의문??? 만약 한다면 js에서 css를 처리해줘야하는지? */
+	button:hover {
+		border-color: blue;
+		outline-color: blue;
+	}
+	
+	table {
+		margin-top : 5px;
+		border: 1px solid #B9062F;
+	}
+
+</style>
+
+<!-- cdn 까먹지 않기 안되면 아예 jquery를 사용하지 못함 처음에 이것때문에 안되었음 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	
+	
+	$(document).ready(function(){
+		
+		
+		var str = "";
+		var cnt = 1;
+		
+		//숫자 입력
+		$('.number').click(function() {
+			var temp = $(this).attr("value");
+
+			// console.log("temp는"+temp);
+			// console.log("길이는"+str.length);
+			
+			//또 하나 추가할 경우 처음 값이 0인 경우 예외 처리하기 이걸 어떻게 하지? 다시 생각해보기
+			
+			str += temp;
+			$('.input').attr("value",str);	
+		})
+		//연산자 입력 , 마지막 값이 연산자가 아니고 str의 길이가 1이상이어야지 연산자 추가
+		$('.operator').click(function() {
+			
+			var temp = $(this).attr("value");
+			
+			if (str.length>0 && str.charAt(str.length-1) != "+" && str.charAt(str.length-1) != "-" 
+					&& str.charAt(str.length-1) != "*" && str.charAt(str.length-1) != "/" ) {
+				str += temp;
+				$('.input').attr("value",str);	
+			}		
+		})
+		
+		//clear entry 기능 => substring으로 하기
+		
+		$('.clear-entry').click(function(){			
+			if(str.length>0){
+				str = str.substring(0, str.length-1); 
+				if(str.length==0){
+					$('.input').attr("value",0);
+				}else{
+					$('.input').attr("value",str);					
+				}
+			}		
+		})
+		// = 구현
+		$('.equation').click(function() {
+			
+			var result = eval(str);
+			
+			//수식으로 끝나면 안되므로 조건문 걸어주기, 길이가 0이면 undefined 값이 되므로 
+			if( str.length>0 &&str.charAt(str.length-1) != "+" && str.charAt(str.length-1) != "-" 
+					&& str.charAt(str.length-1) != "*" && str.charAt(str.length-1) != "/"){
+				$('.input').attr("value",result);
+				// $('.result-list').text(cnt + ".  " +str+"= "+result);
+				
+				
+				//궁금한 점 이 방법말고 다른 방법이 있는지?? 그냥 무식하게 이렇게 넣는 방법 밖에 없는 지 ??
+				
+				//result 아래  div객체 만들어서 저장하기
+				var resultList = '<div>';
+				resultList += cnt + ".  "+str + "=" + result + "</div>"; 
+				
+				//console.log("resultList"+resultList);
+				$('.result').append(resultList);
+				
+				cnt++;
+				str = "";	
+			}
+			//div result-list에 넣는 것 구현
+		})
+		
+		
+	});
+	
+
+</script>
+
+</head>
+<body>
+
+<fieldset>
+	<input type="text" class="input" value="0">
+	<table>
+		<tr>
+			<td><button class="number" value="7">7</button></td>
+			<td><button class="number" value="8">8</button></td>
+			<td><button class="number" value="9">9</button></td>
+			<td><button class="operator" value="+">+</button></td>
+		</tr>
+		<tr>
+			<td><button class="number" value="4">4</button></td>
+			<td><button class="number" value="5">5</button></td>
+			<td><button class="number" value="6">6</button></td>
+			<td><button class="operator" value="-">-</button></td>
+		</tr>
+		<tr>
+			<td><button class="number" value="1">1</button></td>
+			<td><button class="number" value="2">2</button></td>
+			<td><button class="number" value="3">3</button></td>
+			<td><button class="operator" value="*">*</button></td>
+		</tr>
+		<tr>
+			<td><button class="number" value="0">0</button></td>
+			<td><button class="clear-entry">CE</button></td>
+			<td><button	class="equation">=</button></td>
+			<td><button class="operator" value="/">/</button></td>
+		</tr>
+	</table>
+	
+	<div class="result">
+		<h2>결 과 이 력</h2>
+<!-- 	이부분에 저장될 것 <div>수식값</div>-->
+	</div>
+
+</fieldset>
+
+</body>
+</html>

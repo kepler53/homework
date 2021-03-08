@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<style type="text/css">
+#target{
+	width: 560px;
+	height: 300px;
+	background-color: blue;
+	text-align: center;
+	
+}
+#target > span{
+	margin-top : 100px;
+	margin-left : 10px;
+	margin-right : 10px;
+	color: : red;
+	background-color: red;
+/* 	float: left; */
+	border-radius: 50%;
+	width : 70px;
+	height : 70px;
+	text-align: center;
+	display: inline-block;
+	line-height: 70px;
+/* 	vertical-align: center; */
+
+/* 	모르겠는 점 어떻게 span 안의 text들을 어떻게 정중앙에 위치시킬 수 있는 지 모르겠음
+	그리고 어떻게 중앙에서부터 시작해서 하나씩 옆으로 미루게 하는지 모르겠음
+ */	
+}
+</style>
+
+<script type="text/javascript">
+window.onload = function(){
+	var n=0;
+	
+	
+	var timer = setInterval(function() {
+		
+		var numbers = getLottoNumber();
+		
+		document.getElementById('target').innerHTML += '<span>'+numbers[n]+'</span>';
+		n++;
+		if(n==6)
+			clearInterval(timer);
+	}, 1000)
+	
+	//로또 번호  1~45 생성
+	function genRandom(){
+	    return Math.floor(Math.random()*45+1); //소수값 버리기 => floor이용, 올릴 것이엇으면 celing => celing 쓸거면 +1 안해줘도 됨
+	}
+	// 로또 번호 추첨
+	function getLottoNumber(){
+	    var numbers = [];
+	    while( numbers.length < 6 ) {
+	        var randomNum = genRandom();
+	        if( numbers.indexOf(randomNum)<0 ) { // 안나타나면 -1이고  나타나면 위치를 나타냄,  이 때  indexOf의 return값은 position을 나타낸다.
+	            numbers.push(randomNum);
+	        }
+	    }
+	    return numbers;
+	}		
+}
+</script>
+</head>
+<body>
+	<div>대박을 기원합니다.</div>
+	<div id="target"></div>
+</body>
+</html>
