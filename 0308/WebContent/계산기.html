@@ -41,8 +41,10 @@
 	$(document).ready(function(){
 		
 		
-		var str = "";
+		//var str = "";
 		var cnt = 1;
+		
+		//str =>  $('.input').attr("value")+temp 로 바로 가져와가지고 생각하기
 		
 		//숫자 입력
 		$('.number').click(function() {
@@ -53,42 +55,54 @@
 			
 			//또 하나 추가할 경우 처음 값이 0인 경우 예외 처리하기 이걸 어떻게 하지? 다시 생각해보기
 			
-			str += temp;
-			$('.input').attr("value",str);	
+			if($('.input').attr("value")=='0'){
+				$('.input').attr("value",temp);
+			}else{			
+				$('.input').attr("value",$('.input').attr("value")+temp);
+			}
 		})
 		//연산자 입력 , 마지막 값이 연산자가 아니고 str의 길이가 1이상이어야지 연산자 추가
 		$('.operator').click(function() {
 			
 			var temp = $(this).attr("value");
+			var length = $('.input').attr("value").length;
 			
-			if (str.length>0 && str.charAt(str.length-1) != "+" && str.charAt(str.length-1) != "-" 
-					&& str.charAt(str.length-1) != "*" && str.charAt(str.length-1) != "/" ) {
-				str += temp;
-				$('.input').attr("value",str);	
-			}		
+// 			console.log(temp);
+// 			console.log(length);
+			if (length>0 && $('.input').attr("value").charAt(length-1) != "+" && $('.input').attr("value").charAt(length-1) != "-" 
+					&& $('.input').attr("value").charAt(length-1) != "*" && $('.input').attr("value").charAt(length-1) != "/" ) {
+				
+				$('.input').attr("value",$('.input').attr("value")+temp);	
+			}
+			console.log($('.input').attr("value"));
 		})
 		
 		//clear entry 기능 => substring으로 하기
 		
-		$('.clear-entry').click(function(){			
-			if(str.length>0){
-				str = str.substring(0, str.length-1); 
-				if(str.length==0){
+		$('.clear-entry').click(function(){
+			
+			var length = $('.input').attr("value").length;
+			
+			if(length>0){
+				$('.input').attr("value" , $('.input').attr("value").substring(0, length-1));
+				var length = $('.input').attr("value").length;
+				if(length==0){
 					$('.input').attr("value",0);
 				}else{
-					$('.input').attr("value",str);					
+					$('.input').attr("value",$('.input').attr("value"));					
 				}
 			}		
 		})
 		// = 구현
-		$('.equation').click(function() {
+		$('.equation').click(function(e) {
 			
-			var result = eval(str);
+			var result = eval($('.input').attr("value"));
+			var length = $('.input').attr("value").length;
 			
 			//수식으로 끝나면 안되므로 조건문 걸어주기, 길이가 0이면 undefined 값이 되므로 
-			if( str.length>0 &&str.charAt(str.length-1) != "+" && str.charAt(str.length-1) != "-" 
-					&& str.charAt(str.length-1) != "*" && str.charAt(str.length-1) != "/"){
-				$('.input').attr("value",result);
+			if (length>0 && $('.input').attr("value").charAt(length-1) != "+" && $('.input').attr("value").charAt(length-1) != "-" 
+					&& $('.input').attr("value").charAt(length-1) != "*" && $('.input').attr("value").charAt(length-1) != "/" ){
+				
 				// $('.result-list').text(cnt + ".  " +str+"= "+result);
 				
 				
@@ -96,18 +110,38 @@
 				
 				//result 아래  div객체 만들어서 저장하기
 				var resultList = '<div>';
-				resultList += cnt + ".  "+str + "=" + result + "</div>"; 
+				resultList += cnt + ".  "+ $('.input').attr("value") + "=" + result + "</div>"; 
 				
 				//console.log("resultList"+resultList);
 				$('.result').append(resultList);
+				$('.input').attr("value",result);	
 				
 				cnt++;
-				str = "";	
+				
+				
+				
 			}
-			//div result-list에 넣는 것 구현
+//				if 뒤에 버튼이 숫자면 아예 리셋 e.stopPropagation() ????? 맞는지 모르겠다.
+// 				e.stopPropagation();
+// 				$('.number-after').one('click', function() {
+// 					$('.input').attr("value",0);
+// 				})
+		
+// 				하고 싶은 것 : equation이 끝난 후  아무 버튼이나 클릭했을 때 0으로 리셋하는 것 => on을 사용해서 동적으로 된 것들 처리???? 다시 누를 때 아예 리셋하게 하려면?
+// 				숫자를 누르면 아예 리셋, operator를 누르면 이어가는 것
+// 				$('.number-after').on('click',function(){
+// 				$('.input').attr("value",0); 
+// 				});
+// 				으로 하면 아예 안 움직이게 된다. 어떻게 해야하지? 
+				
 		})
 		
 		
+		
+		
+// 		let ttt={'name':'yyj'};
+// 		let test = `<h1>${ttt.name}</h1>`;
+// 		document.getElementById('iii').innerHTML = test;
 	});
 	
 
@@ -117,28 +151,29 @@
 <body>
 
 <fieldset>
+<!-- <div id="iii"></div> -->
 	<input type="text" class="input" value="0">
 	<table>
 		<tr>
-			<td><button class="number" value="7">7</button></td>
-			<td><button class="number" value="8">8</button></td>
-			<td><button class="number" value="9">9</button></td>
+			<td><button class="number number-after" value="7">7</button></td>
+			<td><button class="number number-after" value="8">8</button></td>
+			<td><button class="number number-after" value="9">9</button></td>
 			<td><button class="operator" value="+">+</button></td>
 		</tr>
 		<tr>
-			<td><button class="number" value="4">4</button></td>
-			<td><button class="number" value="5">5</button></td>
-			<td><button class="number" value="6">6</button></td>
+			<td><button class="number number-after" value="4">4</button></td>
+			<td><button class="number number-after" value="5">5</button></td>
+			<td><button class="number number-after" value="6">6</button></td>
 			<td><button class="operator" value="-">-</button></td>
 		</tr>
 		<tr>
-			<td><button class="number" value="1">1</button></td>
-			<td><button class="number" value="2">2</button></td>
-			<td><button class="number" value="3">3</button></td>
+			<td><button class="number number-after" value="1">1</button></td>
+			<td><button class="number number-after" value="2">2</button></td>
+			<td><button class="number number-after" value="3">3</button></td>
 			<td><button class="operator" value="*">*</button></td>
 		</tr>
 		<tr>
-			<td><button class="number" value="0">0</button></td>
+			<td><button class="number number-after" value="0">0</button></td>
 			<td><button class="clear-entry">CE</button></td>
 			<td><button	class="equation">=</button></td>
 			<td><button class="operator" value="/">/</button></td>

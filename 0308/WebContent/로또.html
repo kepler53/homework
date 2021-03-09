@@ -33,25 +33,26 @@
 </style>
 
 <script type="text/javascript">
-window.onload = function(){
-	var n=0;
+	window.onload = function(){
+		var n=0;
+		var numbers = [];
 	
-	
-	var timer = setInterval(function() {
+		var timer = setInterval(function() {
 		
-		var numbers = getLottoNumber();
+			var numbers = getLottoNumber();
 		
-		document.getElementById('target').innerHTML += '<span>'+numbers[n]+'</span>';
-		n++;
-		if(n==6)
-			clearInterval(timer);
-	}, 1000)
+			document.getElementById('target').innerHTML += '<span>'+numbers[n]+'</span>';
+			n++;
+			if(n==6)
+				clearInterval(timer);
+		}, 1000)
 	
 	//로또 번호  1~45 생성
 	function genRandom(){
 	    return Math.floor(Math.random()*45+1); //소수값 버리기 => floor이용, 올릴 것이엇으면 celing => celing 쓸거면 +1 안해줘도 됨
 	}
 	// 로또 번호 추첨
+	// 다시 짜기
 	function getLottoNumber(){
 	    var numbers = [];
 	    while( numbers.length < 6 ) {
@@ -61,8 +62,16 @@ window.onload = function(){
 	        }
 	    }
 	    return numbers;
-	}		
-}
+	}	
+
+	
+// 	function getLottoNumber() {
+// 		var randomNum = genRandom(); //여기에서 for문 또 돌려야하나? if문 안에서 자체적으로 for문 돌리는 거 아닌가? 왜 안걸러지지??
+// 		if (numbers.indexOf(randomNum) < 0) { // 안나타나면 -1이고  나타나면 위치를 나타냄,  이 때  indexOf의 return값은 position을 나타낸다.
+// 			numbers.push(randomNum);
+// 		}
+// 		return numbers;
+// 	}
 </script>
 </head>
 <body>
