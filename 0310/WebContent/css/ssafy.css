@@ -1,0 +1,62 @@
+	body{
+		border: 1px solid blue;
+		margin: 10px;
+		
+	}
+
+/* 상단 login 파트 */
+	.login{
+		color: red;
+		background-color: white;
+		border-color: white;
+	}
+	.logout{
+		display: none;
+		color: red;
+		background-color: white;
+		border-color: white;
+	}
+	.modal-div{
+		background-color: white;
+		text-align: right;
+	}
+	.login-form{
+  		text-align: left;
+  	}
+  	
+  	.login-form div{
+  		width: 250px;
+  		margin: 20px;
+  	}
+  	
+/*   	중단 부분 start */
+  	.div-center{
+  		text-align: center;
+  	}
+  	.main-group{
+  		text-align: left;
+  	}
+  	
+  	.main-group{
+  		margin-top: 20px;
+  		margin-bottom: 30px;
+  	}
+  	#content{
+  		height: 300px;
+  		vertical-align: baseline;
+  	}
+  	.btn-center{
+  		margin-bottom : 30px;
+  	}
+  	.center-text{
+  		height: 300px;
+  	}
+  	
+  
+  
+/*  글 게시판  	 */
+  	.page-check{
+  		text-align: center;
+  	}
+
+/* pagination에 왜 이동이 안될까? */

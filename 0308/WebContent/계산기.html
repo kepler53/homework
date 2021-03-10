@@ -40,7 +40,7 @@
 	
 	$(document).ready(function(){
 		
-		
+		var isStart = true;
 		//var str = "";
 		var cnt = 1;
 		
@@ -60,6 +60,7 @@
 			}else{			
 				$('.input').attr("value",$('.input').attr("value")+temp);
 			}
+			isStart = false;
 		})
 		//연산자 입력 , 마지막 값이 연산자가 아니고 str의 길이가 1이상이어야지 연산자 추가
 		$('.operator').click(function() {
@@ -75,6 +76,7 @@
 				$('.input').attr("value",$('.input').attr("value")+temp);	
 			}
 			console.log($('.input').attr("value"));
+			isStart = false;
 		})
 		
 		//clear entry 기능 => substring으로 하기
@@ -91,7 +93,7 @@
 				}else{
 					$('.input').attr("value",$('.input').attr("value"));					
 				}
-			}		
+			}	
 		})
 		// = 구현
 		$('.equation').click(function(e) {
@@ -99,6 +101,7 @@
 			var result = eval($('.input').attr("value"));
 			var length = $('.input').attr("value").length;
 			
+			isStart = true;
 			//수식으로 끝나면 안되므로 조건문 걸어주기, 길이가 0이면 undefined 값이 되므로 
 			if (length>0 && $('.input').attr("value").charAt(length-1) != "+" && $('.input').attr("value").charAt(length-1) != "-" 
 					&& $('.input').attr("value").charAt(length-1) != "*" && $('.input').attr("value").charAt(length-1) != "/" ){
@@ -122,10 +125,11 @@
 				
 			}
 //				if 뒤에 버튼이 숫자면 아예 리셋 e.stopPropagation() ????? 맞는지 모르겠다.
-// 				e.stopPropagation();
-// 				$('.number-after').one('click', function() {
-// 					$('.input').attr("value",0);
-// 				})
+//				e.stopPropagation();
+//				$('.number-after').one('click', function(a) {
+//					$('.input').attr("value",$(this).val());
+//					a.stopPropagation();
+//				})
 		
 // 				하고 싶은 것 : equation이 끝난 후  아무 버튼이나 클릭했을 때 0으로 리셋하는 것 => on을 사용해서 동적으로 된 것들 처리???? 다시 누를 때 아예 리셋하게 하려면?
 // 				숫자를 누르면 아예 리셋, operator를 누르면 이어가는 것

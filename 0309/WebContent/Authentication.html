@@ -14,7 +14,7 @@
   $(document).ready(function(){
 		
 	  	//0. id의 input 값이 들어갈 때 가지고와서 비교
-// 	  	$('#id')
+// 	  	$('#id').pressdown
 	  
 	  
 	  
@@ -74,7 +74,7 @@
   					//해야할 것 : logout button 만들고 login, Signup의 css invisible로 만들기
   					$('.login').css('display','none');
   					$('.logout').css('display','inline-block');
-  					
+  					return false;
   				}
   				
   			});
