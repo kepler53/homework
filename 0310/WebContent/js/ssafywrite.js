@@ -1,7 +1,6 @@
-
 $(document).ready(function(){
 	
-	
+	console.log('너도 안찍히니?');
 	// 1. 글쓰기 태그를 눌렀을 때
 	//	
 	//	  $('#btn-write').click(function() {	
@@ -13,7 +12,7 @@ $(document).ready(function(){
 	// 
 	
 		$('#search-btn').click(function() {
-			
+			console.log('뭐가문제야');
 			$.ajax({
 				url : 'js/uploadlist.json',
 				type : 'GET',
@@ -28,8 +27,7 @@ $(document).ready(function(){
 		// json 파일에 , 쉼표 안 붙여서 찾느라 1시간반을 보냈습니다.
 		// 검색 누를 때 table에 뿌려진 거 다 없애야 하는지???
 		function searchByOption(data){
-			
-			
+				
 			let option = $("#sel option:selected").text();
 			let optionType;
 			//select 태그의 옵션 값 글 번호, 제목, 작성자, 작성일
@@ -44,17 +42,9 @@ $(document).ready(function(){
 			}else if(option=='작성일'){
 				optionType = 'date';
 			}
-//			console.log(optionType);
-//			console.log(input);
-			
-			$.each(data,function(index,item){
+			console.log(optionType);
+			console.log(input);
 				
-				//이부분에서 optionType으로 질의를 날린 후에 검색...그리고 table에 추가
-				
-			})
-			
-			$('#upload-list').empty();
-		
 		}
 	
 	// 3. table의 하나를 클릭했을 때 ssafyread.html로 넘어가기 넘어갈 때 값들 가지고 넘어간다.

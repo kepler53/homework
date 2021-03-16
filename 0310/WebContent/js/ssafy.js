@@ -68,8 +68,8 @@
   		
   		//6. 목록 버튼을 누르면 ssafyWrite로 넘어가기
   		$('#btn-list').click(function() {
-			
-  			$(location).attr('href','http://localhost:8080/0310/ssafyWrite.html');
+			location.href="http://localhost:8080/0310/ssafyWrite.html";
+  			//$(location).attr('href','');
 		});
   		
   		
