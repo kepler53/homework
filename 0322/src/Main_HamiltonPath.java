@@ -36,7 +36,9 @@ public class Main_HamiltonPath {
         //기저조건
         //1 :cnt값이 N-1일 때
         if(cnt==N-1) {
-        	result = Math.min(result, sum+map[index][1]); //마지막에 회사로 돌아가는 값 처리  
+        	if(map[index][1]!=0) { //마지막에 돌아가는 경로가 없으면 안됨
+        		result = Math.min(result, sum+map[index][1]);
+        	} //마지막에 회사로 돌아가는 값 처리  
              // => 계속sum+map[index][0]으로 계산하고 있었음....
             return;
         }
