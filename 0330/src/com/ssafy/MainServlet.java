@@ -58,7 +58,7 @@ public class MainServlet extends HttpServlet {
 		String id = request.getParameter("userid");
 		String pwd = request.getParameter("userpwd");
 		//주의할 점 여기서 input의 id 값이 아닌 name의 정보이다.
-		
+		System.out.println(id+"/"+pwd);
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -66,11 +66,11 @@ public class MainServlet extends HttpServlet {
 		
 		try {
 			System.out.println("여기는 왔니?");
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/ssafyweb?serverTimezone=UTC&useUniCode=yes&characterEncoding=UTF-8", "leejh", "dydak5310!");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hw0330?serverTimezone=UTC&useUniCode=yes&characterEncoding=UTF-8", "leejh", "dydak5310!");
 			//이 부분 질문하기 새로운 스키마 연결할 때 모르겠음
 			String sql = "select username \n";
-			sql += "from ssafy_member \n";
-			sql += "where userid = ? and userpwd = ?";
+			sql += "from ssafy_members \n";
+			sql += "where username = ? and userpwd = ?";
 			//sql문 다시 짜기, table도 새로 생성 정의한 것만 해서
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
