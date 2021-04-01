@@ -68,24 +68,31 @@ public class MainServlet extends HttpServlet {
 			//이 부분 생각 좀만 더 해보기
 			
 			if(service.add(product)) {
-				req.setAttribute("addResult", "success");
+//				req.setAttribute("addResult", "success");
+//				System.out.println("리스트 보여줘!!!!");
+//				List<ProductDTO> productList = service.getProducts();
+//				req.setAttribute("productList", productList);
 //				path = "/productManage/product_list.jsp";
+//				위의 다섯 줄은  foward 방식 사용
 				// 이 부분으로 바로 가게 되면 db에 있는 데이터를 불러오지 못하게 된다.
 				// 그러면 무조건 다른페이지로 가야하는 데 그게 효과적인가? 
 				// 
+//				resp.sendRedirect(req.getContextPath()+"/MainServlet?=list");
 				System.out.println("추가됨");
+				path="/productManage/add_result.jsp";
 			}else {
-//				// 이 부분이 진짜 고민이 많이 된다.
+				// 이 부분이 진짜 고민이 많이 된다.
 				// crud에서 r 빼고 만든 페이지로 그냥 다 들고 가서 처리해버리는 게 낫나?????
 			}
 		}else if(act.equals("delete")) {
-			path = "/productManage/product_crud_result.jsp";
+//			path = "/productManage/product_crud_result.jsp";
 			//임의의 결과 페이지 생성 => 나중에 작성하기
 			System.out.println("삭제해줘");
 			
 			String productname = req.getParameter("deleteproductname");
 			
 			if(service.delete(productname)) {
+				path = "/productManage/product_list.jsp";
 				System.out.println("삭제됨");
 			}else {
 				System.out.println("삭제 안 됐어");
