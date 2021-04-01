@@ -23,7 +23,7 @@ import GuestBookService.GuestBookServiceImpl;
 //login한 상태에서 <%@ include file=".jsp"%>로 들고 다니는 거 연습하기
 //주말동안에 구현 못한거 다 구현하기
 //디비연결하기
-//글 삭제할 때 cascade 안되게 설정하기
+// 멤버 탈퇴할 때 글들도 다 같이 delete cascade
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
