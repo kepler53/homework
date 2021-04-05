@@ -1,0 +1,45 @@
+
+1. select count(*) "전체 연도", count(distinct indepyear) "독립연도 보유"from country; // 내가 생각한 답 : 독립 연도가 겹치는 나라는 중복된다고 생각했는 데
+1-1. select count(*) "전체 연도", count(indepyear) "독립연도 보유"from country; // 그냥 indepyear가 있는 나라 구하는 거였음
+
+
+2. select sum(LifeExpectancy) "합계", round(avg(LifeExpectancy),2) "평균", max(LifeExpectancy) "최대", min(LifeExpectancy) "최소" from country;
+3. select Continent, count(*), sum(Population)  from country  group by Continent order by count(*) desc limit 7;
+4. select continent, sum(SurfaceArea) "표면적 합"from country group by continent order by sum(SurfaceArea)  desc limit 3; 
+5 select continent, sum(gnp) "gnp 합" from country where population > 50000000 group by continent order by sum(gnp) limit 0,5;
+6. select continent, sum(gnp) "gnp 합" from country where population > 50000000  group by continent having sum(gnp) > 5000000 order by sum(gnp) limit 0,5; 
+7. select IndepYear, count(*) from country group by IndepYear having count(*) > 10 and indepyear is not null;
+8. select continent, name, gnp, avg(gnp) over(), avg(gnp) over(partition by continent) "대륙평균"from country;
+//self join 쓰려고 했는 데 어차피 집계함수가 한 번 call되면 tuple 하나만 출력해서 over사용 =>  누가 mysql에 partition by 없다고 싸질러놔서 찾느라 30분 걸림
+
+9. country의 pk인 code키를 countrylanguage에서 foreign key로 사용하는 데 country table에 AAA에 해당하는 tuple이 존재하지 않는다. => country에 AAA를 가지는 튜플을 만든다. 그 후에 insert 명령을 한다. 
+10. 이미 primary key인 ('country code','language')에 해당하는 값을 가진 tuple이 존재해서 이를 추가할 수 없다. => update로 해야한다.
+11. country table에서 Code를 char[3] 으로 선언하였는 데 insert할 때 code의 길이가 5이므로 country table의 code를  char[5] 혹은 varchar[원하는 길이]로 설정하여 넘긴다
+12. select id, name, CEILING(population*1.1) from city where id = "2331";
+13. countrylanguage table의 countrycode column이 country table의 code를 참조하고 있으므로 country table에 on delete cascade 옵션을 준다. ///다른방법은 찾아 본 걸로 error code 1451에 대한 해결 방법 : SET FOREIGN_KEY_CHECKS=0;
+14. rollback; //=> 이거 말고 할 게 있나?
+15~21
+create schema ssafy_ws_5th;
+use ssafy_ws_5th;
+drop table if exists user;
+
+CREATE TABLE user (
+  id varchar(50) not null ,
+  name varchar(50) not null default '익명',
+  pass varchar(50)  not null,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=4114 DEFAULT CHARSET=utf8mb4;
+
+insert into user values('ssafy','1234','김싸피');
+insert into user values('hong','5678','홍싸피');
+insert into user values('test','test','테스트');
+
+select * from user;
+
+update user set pass = 'test@테스트' where id = 'test';
+select * from user where id = 'test';
+
+delete from user where id = 'test';
+select * from user where id = 'test';
+
+commit;
