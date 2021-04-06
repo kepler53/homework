@@ -1,0 +1,6 @@
+1. select e.ename, e.job, e.sal from emp e, dept d where d.deptno = e.deptno and d.loc = "chicago";
+2. select e.empno, e.ename, e.job, e.deptno from emp e join dept d on e.deptno = d.deptno where e.mgr is null;
+3. select e.ename, e.job, e.mgr from emp e join dept d on d.deptno = e.deptno where e.mgr = (select mgr from emp where ename = "blake") and e.ename not in ('blake');
+//궁금한 점 여기에서 blake를 포함시켜야하나? 안 포함할 거 같아서 뒤의 문장 적음
+4. select * from emp order by hiredate limit 0,5;
+5. select e.ename, e.job ,d.dname from emp e join dept d on d.deptno = e.deptno where e.mgr = (select empno from emp where ename = "jones");
