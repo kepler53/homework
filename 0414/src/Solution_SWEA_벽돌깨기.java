@@ -94,11 +94,11 @@ public class Solution_SWEA_벽돌깨기 {
 //			}
 //			System.out.println();
 //		}
-////		resetVisit();
-////		deleteBlockCnt = fall(copiedMap, 6);
-////		deleteBlank(copiedMap);
-//
-//
+//		resetVisit();
+//		deleteBlockCnt = fall(copiedMap, 6);
+//		deleteBlank(copiedMap);
+
+
 //	}
 
 	private static void deleteBlank(int[][] copiedMap) {
@@ -108,28 +108,34 @@ public class Solution_SWEA_벽돌깨기 {
 		//뭘 잘못했지 왜 다른데는 가라 앉는 데   앞부분은 안 가라 앉는거지.....
 		for (int col = 0; col < W; col++) {
 			for (int row = H-1; row > 0; row--) {
-//				for (int i = 0; i <= row; i++) {
-//					if(copiedMap[row-i][col]==0) {
-//						for (int j = row-i; j > 0; j--) {
-//							copiedMap[j][col] = copiedMap[j-1][col];		
-//						}
-//					}
-//					copiedMap[0][col] = 0;
-//				}
+				int cnt=0;
+				for (int i = 0; i < row; i++) {
+					if(copiedMap[row-i][col]==0) {
+						for (int j = row-i; j > 0; j--) {
+							copiedMap[j][col] = copiedMap[j-1][col];		
+						}
+						i--;
+					}
+					copiedMap[0][col] = 0;
+					cnt++;
+					if(cnt==row)
+						break;
+				}
 				
 				//디버깅 요청하기 => 위의 코드도 다 가라앉아야지 정상아닌가 ? 무슨 실수 한거지?
-				if(copiedMap[row][col]==0) {
-					
-					int tempRow = row; // 0이 다음에 어디서 나타나는 지 확인하기 위해
-					
-					while(copiedMap[tempRow][col]==0 && tempRow >0) {
-						tempRow--;
-					} // 다음 0이 안나타나는 row 체크
-					
-					copiedMap[row][col] = copiedMap[tempRow][col];
-					copiedMap[tempRow][col] = 0;
-					
-				}
+				
+				//0이 연속되는 경우를 제외해야하므로 위의 경우도 그거 고려했는 데 왜 안될까
+				//swap 형태로 짜기
+//				if(copiedMap[row][col]==0) {
+//					// 0이 다음에 어디서 나타나는 지 확인하기 위해
+//					int tempRow = row; 
+//					 // 다음 0이 안나타나는 row 체크
+//					while(copiedMap[tempRow][col]==0 && tempRow >0) {
+//						tempRow--;
+//					}
+//					copiedMap[row][col] = copiedMap[tempRow][col];
+//					copiedMap[tempRow][col] = 0;
+//				}
 			}	
 		}
 	}
