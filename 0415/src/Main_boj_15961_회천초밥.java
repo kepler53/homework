@@ -29,11 +29,11 @@ public class Main_boj_15961_회천초밥 {
 		}
 		int result = 0; //최대 값 알기 위해 
 
-		for (int i = k; i < k + N; i++) { // 다 먹어보기 순서대로 0123, 1234 ,2345, 3456, 이형태로  N개만큼
-			if (--countSushi[sushiList[i - k]] == 0) {
+		for (int i = k; i < k + N; i++) { // 다 먹어보기 순서대로 0123, 1234 ,2345, 3456, 이형태로  N개만큼 원형이므로 k에서 시작해서 k+N까지
+			if (--countSushi[sushiList[i - k]] == 0) { //초밥의 개수가 0개이면 연속으로 못먹는 것이므로
 				cnt--;
 				}
-			if (countSushi[sushiList[i % N]]++ == 0) { //원형이므로 mod해줘야함
+			if (countSushi[sushiList[i % N]]++ == 0) { //원형이므로 mod해줘야함, 
 				cnt++;
 				}
 			result = Math.max(cnt, result);
