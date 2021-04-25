@@ -6,9 +6,9 @@ public class Solution_SWEA_Professional키순서 {
 	//dfs,bfs,floyd-warshall : 내가 생각한 풀 수 있는 경우, floyd-warshall 사용할 해볼 경우 별로 없으므로 사용해보기, 나중에 다시 풀 때는 dfs로 풀기
 	//bfs로 풀면 큰 애 들어가는 큐, 작은애 들어가는 큐 만들어서 값 return 받아서 더해서 N-1이면 될 것이고
 	//dfs => 지금은 생각이 안남 => 머리가 안돌아가 => 수업들으면서 생각하기
-	//dijsktra도 플로이드 워셜이랑 비슷할 듯, pq쓴 버젼(N^2*lonN)일 것이고 , 아니면 pq안쓴 버젼은 floyed-warshall하고 똑같이 써서 이건 의미가 없을 듯.....  => 최단경로의 의미가 있나? 이 방법은 아닌듯 
-	//잘못생각함.....
-	//
+	//dijsktra도 플로이드 워셜이랑 비슷할 듯, pq쓴 버젼(N^2*lonN)일 것이고 , 아니면 pq안쓴 버젼은 floyed-warshall하고 똑같이 써서 이건 의미가 없을 듯.....  
+	//최단경로의 의미가 있나? 유량이 N(N-1)/2인 거 찾아내면되나? 
+	//Prim이나 Kruskal을 사용하려나? 절대 안 되는 것 MST가 안되므로
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
@@ -23,8 +23,8 @@ public class Solution_SWEA_Professional키순서 {
 			
 			int[][] adj = new int[N+1][N+1]; //1번 인덱스부터 쓰므로
 			
-			final int INF = 25000;
 			//초기값 무한대 =>Integer.MaxValue 하면 오류 나서 그냥 임의의 큰 값 => 499가 최대이므로
+			final int INF = 25000*25000/2+1;
 			for (int i = 0; i < adj.length; i++) {
 				Arrays.fill(adj[i], INF);
 			}
