@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.product.mapper.MemberMapper">
+
+	<select id="login" parameterType="com.ssafy.product.dto.MemberDto" resultType="com.ssafy.product.dto.MemberDto">
+		select mid as userid, mpass as userpass, mname as username from member_tb where mid = #{userid} and mpass =#{userpass}
+	</select>
+
+<!-- 	MemberDto하고 Database에 저장한 이름이 다르므로 alias써서 하기 그런데 이거 반환할 때 어떻게 반환하는 건지 그냥 String만 주는 게 아니었나????? -->
+
+	<select id="count" resultType="int">
+		select count(*)
+		from member_tb;
+	</select>
+
+</mapper>

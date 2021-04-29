@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.product.mapper.ProductMapper">
+	
+	<insert id="add" parameterType="com.ssafy.product.dto.ProductDto">
+		insert into product(pname,pprice,pdescription) values (#{name},#{price},#{descript}) 
+	</insert>
+	
+	<select id="list" resultType="com.ssafy.product.dto.ProductDto">
+		select pname as name, pprice as price, pdescription as descript
+		from product
+	</select>
+
+
+</mapper>
