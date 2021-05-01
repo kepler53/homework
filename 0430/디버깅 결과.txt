@@ -1,0 +1,31 @@
+실습 
+1. 수정 :  update 글 from 글 join 멤버 where 멤버.name =#{name}
+
+2. 검색결과 : checkbox일 경우 선택한 값들을 controller에게 List로 값을 받고 그 값을 동적 sql을 사용하여 값을 리턴 받는다. 
+	   selectbox일 경우 Map형태로 값을 받아 마찬가지로 mapper에서 값을 받는다.
+	구현할 때 ajax를 이용해서 구현한다.
+
+3. 파일첨부 : 아직 코드를 못봤습니다.
+
+
+제가 따로 구현한 부분
+1. jsp에서 변수가 더 위에 있으면 script가 그 부분을 못잡아서 작동하지 않는다.  => script를 밑 부분으로 옮기니까 작동
+2. 회원가입 시 회원아이디 체크를 하는 부분을 ajax로 구현하였습니다. => 질문 : js파일을 webapp밑의 js로 옮겼을 때 servlet-context.xml에서 resources mapping을 하는 데 이 부분에서 
+mapping이 어떻게 되는 건지, 그리고 jsp에서 script를 가져올 때 무조건 경로를 길게 쓰는 방법 밖에 없는 지 => 따로 mapping할 수 있나? jstl 사용해야 되나?
+, 그리고 중복체크 버튼을 원래는 만들었었는 데 click했을 때 잠시동안 보여지고 사라져서 alert를 사용하였는 데 이 때 문제는 input값에 들어간 id값이 사라지는 것이다. 이 부분을 못 처리해서
+span 태그를 이용한 input의 blur를 처리해서 마우스를 밖으로 나가게 하면 id를 체크한다. => 중복체크 구현하는 것 button 이용한 버젼 질문하기
+3. 비밀번호를 구현할 때 길이로만 체크하는 것을 구현하였습니다. => 추후에 해야할 부분 : regex 사용해서 구현하기
+4. 우편번호를 가져와서 쓰는 부분은 api를 가져와서 사용하였습니다. 이 때 contoller에 넘길 때 필요한 주소 값은 MemeberDto에 담고 그 중에서 제외된 부분은 RequestParam으로 가져와
+MemberDto로 다시 합쳐서 구현하였습니다.
+5. input type을 submit으로 구현하지 않고 input type을 button으로 구현하여 id,pwd,pwd_check가 안될때는 회원이 추가가 안되도록 막았습니다.
+
+추후 구현해야할 부분
+1. 사용자와 판매자의 링크를 구분하기
+2. index page에 바로 상품을 보여주고 현재 index page를 login.jsp로 빼기 => 네이버는 예전에 로그인을 바로 할 수 있었는 데 바꾼 이유 물어보기, 아마 보안성 문제??
+3. product검색, 원하는 카테고리에 따른 검색 
+4. 장바구니 기능 추가
+5. 마이페이지
+6. 구매 페이지
+7. 판매자의 폼(img까지 첨부할 수 있도록 만들기)
+8. 모두 bootstrap으로 바꾸기
+9. 
