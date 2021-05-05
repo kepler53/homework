@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>write.html</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#send-btn').click(function(){
+			alert('눌렸어');
+			$.ajax({
+				url:'http://127.0.0.1:1112/add',
+				method:'post',
+				data:JSON.stringify({
+					"mname":$('#product-name').val(),
+					"mprice":Number($('#product-price').val()),
+					"mdescription":$('#product-desc').val()
+					}),
+				beforeSend: function (xhr) {
+				        xhr.setRequestHeader("Accept", "application/json");
+				        xhr.setRequestHeader("Content-Type", "application/json");
+				},
+				dataType:'text',
+				success:function(data){
+					location.href="list.html";
+				},
+				error:function(err){
+					alert('error!');
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	상품이름 : <input type="text" id="product-name"><br>
+	상품가격 : <input type="number" id="product-price"><br>
+	상품설명 : <input type="text" id="product-desc"><br>
+	<button id="send-btn">상품 추가</button>
+</body>
+</html>

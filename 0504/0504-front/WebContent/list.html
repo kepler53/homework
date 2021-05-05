@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>board_list.html</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#testbtn').click(function(){
+			$.ajax({
+				url:'http://127.0.0.1:1112/list',
+				dataType:'json',
+				success:function(data){
+
+					let str = "";
+						str += "<tr>";
+						str += "<th>상품이름</th>";
+						str += "<th>상품가격</th>";
+						str += "<th>상품설명</th>";
+						str += "</tr>";
+
+					$.each(data,function(idx, product){
+						str += "<tr>";
+						str += "<td>"+product['mname']+"</td>";
+						str += "<td>"+product['mprice']+"</td>";
+						str += "<td>"+product['mdescription']+"</td>";
+						str += "</tr>";
+					})
+					
+					$('#product-tb').html(str);
+
+				},
+				error:function(){
+					alert('상품목록을 불러오는 데 문제가 존재합니다.');
+				}
+			})
+		})
+	})
+</script>
+</head>
+<body>
+	<table border="1" id="product-tb">
+	</table>
+	<button id="testbtn">누르면 상품을 가져옵니다</button>
+	<a href="add.html">[상품추가]</a>
+</body>
+</html>
