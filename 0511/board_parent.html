@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+    <style>
+        .childs{
+            height: auto;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>나는 부모 컴포넌트이고, 자식 컴포넌트를 아래에 포함합니다.</h1>
+        <child-first class="childs"></child-first>
+        <child-second class="childs"></child-second>
+    </div>
+    <script>
+        const bus = new Vue();
+    </script>
+    
+    <script type="module">
+        import ChildFirst from './ChildList.js';
+        import ChildSecond from './ChildSecond.js';
+        new Vue({ //현재 상태는 부모이고 자식 컴포넌트를 가지고 있다.
+            el : '#app',
+            components : {'ChildFirst':ChildFirst,'ChildSecond' : ChildSecond}
+        })
+    </script>
+</body>
+</html>
