@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+    <style>
+        .first-line{
+            float: left;
+            margin-right: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>게시판</h1>
+        <book-list class="first-line"></book-list>
+        <book-content class="first-line"></book-content>
+        <book-regist></book-regist>
+    </div>
+
+    <script>
+        const bus = new Vue();
+    </script>
+
+    <script type="module">
+        import BookList from './board_booklist.js';
+        import BookContent from './board_bookcontent.js';
+        import BookRegist from './board_bookregist.js'
+
+        new Vue({
+            el : "#app",
+            components : {BookList,BookContent,BookRegist}
+        })
+    </script>
+</body>
+</html>
